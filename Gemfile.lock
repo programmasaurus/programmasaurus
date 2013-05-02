@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/programmasaurus/warden-github-rails.git
+  revision: c569ca5107754d68662cf6f64fa645c2c58878ff
+  specs:
+    warden-github-rails (0.0.1)
+      railties (>= 4.0.0.rc1)
+      warden-github (~> 0.14.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -25,6 +33,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    addressable (2.3.4)
     arel (4.0.0)
     atomic (1.1.8)
     builder (3.1.4)
@@ -40,6 +49,11 @@ GEM
     eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faraday (0.8.7)
+      multipart-post (~> 1.1)
+    faraday_middleware (0.9.0)
+      faraday (>= 0.7.4, < 0.9)
+    hashie (2.0.4)
     hike (1.2.2)
     i18n (0.6.4)
     jbuilder (1.0.2)
@@ -55,6 +69,15 @@ GEM
     mime-types (1.23)
     minitest (4.3.2)
     multi_json (1.7.2)
+    multipart-post (1.2.0)
+    netrc (0.7.7)
+    octokit (1.24.0)
+      addressable (~> 2.2)
+      faraday (~> 0.8)
+      faraday_middleware (~> 0.9)
+      hashie (~> 2.0)
+      multi_json (~> 1.3)
+      netrc (~> 0.7.7)
     pg (0.15.1)
     polyglot (0.3.3)
     rack (1.5.2)
@@ -111,6 +134,11 @@ GEM
     uglifier (2.0.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    warden (1.2.1)
+      rack (>= 1.0)
+    warden-github (0.14.0)
+      octokit (>= 1.22.0)
+      warden (> 1.0)
 
 PLATFORMS
   ruby
@@ -126,3 +154,4 @@ DEPENDENCIES
   thin
   turbolinks
   uglifier (>= 1.3.0)
+  warden-github-rails!
