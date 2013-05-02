@@ -6,7 +6,7 @@ class Homograph < ActiveRecord::Base
     if persisted_homograph.present?
       persisted_homograph
     else
-      HomographBuilder.create(lemma)
+      HomographBuilder.create(lemma: lemma)
     end
   end
 end

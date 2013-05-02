@@ -1,5 +1,5 @@
 class HomographBuilder
-  def self.create(lemma, wordnet_homographs = nil)
+  def self.create(lemma: nil, wordnet_homographs: nil)
     wordnet_homographs ||= Wordnet.instance.find(lemma)
     lemma              ||= wordnet_homographs.lemma
 

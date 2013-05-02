@@ -7,7 +7,7 @@ class SynsetBuilder
     end
 
     wordnet_homographs ||= wordnet_synset.homographs
-    homograph = HomographBuilder.create(nil, wordnet_homographs)
+    homograph = HomographBuilder.create(wordnet_homographs: wordnet_homographs)
 
     Synset.where(
       gloss: wordnet_synset.gloss,
