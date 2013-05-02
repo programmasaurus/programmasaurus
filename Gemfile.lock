@@ -65,7 +65,6 @@ GEM
       multipart-post (~> 1.1)
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
-    ffi (1.8.1)
     flat-ui-rails (0.0.2)
     hashie (2.0.4)
     hike (1.2.2)
@@ -118,7 +117,6 @@ GEM
     rake (0.9.6)
     rdoc (3.12.2)
       json (~> 1.4)
-    rufus-tokyo (1.0.7)
     sass (3.2.8)
     sass-rails (4.0.0.rc1)
       railties (>= 4.0.0.beta, < 5.0)
@@ -177,14 +175,12 @@ DEPENDENCIES
   bootstrap-sass
   coffee-rails (~> 4.0.0)
   dotenv-rails
-  ffi
   flat-ui-rails
   jbuilder (~> 1.0.1)
   jquery-rails
   pg
   pry
   rails (= 4.0.0.rc1)
-  rufus-tokyo
   sass-rails (~> 4.0.0.rc1)
   sdoc
   slim-rails
