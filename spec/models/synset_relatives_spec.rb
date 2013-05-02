@@ -10,4 +10,12 @@ describe SynsetRelatives do
       }.to change { tooth.hyponyms.count }.by(14)
     end
   end
+
+  describe "#build_hypernyms!" do
+    it do
+      expect {
+        SynsetRelatives.new(tooth).build_hypernyms!
+      }.to change { tooth.hypernyms.count }.by(1)
+    end
+  end
 end
