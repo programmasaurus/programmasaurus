@@ -11,29 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130502225320) do
-
-  create_table "homographs", force: true do |t|
-    t.string   "lemma"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "hyponyms", force: true do |t|
-    t.integer  "synset_id"
-    t.integer  "hyponym_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "synsets", force: true do |t|
-    t.string   "gloss"
-    t.string   "part_of_speech"
-    t.string   "synset_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "homograph_id"
-  end
+ActiveRecord::Schema.define(version: 20130502233244) do
 
   create_table "users", force: true do |t|
     t.string   "email"
