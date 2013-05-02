@@ -1,7 +1,19 @@
-h1 Did you mean:
+.row-fluid
+  .span8.offset2
+    .text-center
+      h1.asbestos
+        em
+          ' Which 
+        =' @homograph.lemma
+        em
+          | ?
 
-ul.homograph-disambiguation
-  - @homograph.synsets.each do |synset|
-    li
-      i (#{synset.part_of_speech.to_s[0]}.)
-      |  #{synset.gloss}
+      .homograph-disambiguation
+        - @homograph.synsets.each_slice(9) do |synsets|
+          - synsets.each_with_index do |synset, index|
+            h2
+              i.silver
+                = synset.part_of_speech.to_s[0]
+                ' .
+              span class=disambiguation_color_class(index)
+                = synset.gloss
