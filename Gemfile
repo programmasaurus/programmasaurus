@@ -4,7 +4,7 @@ gem 'rails',     :git => 'git://github.com/rails/rails.git', :branch => '3-2-sta
 gem 'journey',   :git => 'git://github.com/rails/journey.git', :branch => '1-0-stable'
 gem 'arel',      :git => 'git://github.com/rails/arel.git', :branch => '3-0-stable'
 
-gem 'sqlite3'
+gem 'pg'
 
 
 # Gems used only for assets and not required
