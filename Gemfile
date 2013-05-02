@@ -14,6 +14,8 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'warden-github-rails', github: 'programmasaurus/warden-github-rails'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
 group :doc do
   gem 'sdoc', require: false
 end

@@ -47,6 +47,9 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     daemons (1.1.9)
+    dotenv (0.7.0)
+    dotenv-rails (0.7.0)
+      dotenv (= 0.7.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (1.4.0)
@@ -155,6 +158,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass
   coffee-rails (~> 4.0.0)
+  dotenv-rails
   flat-ui-rails
   jbuilder (~> 1.0.1)
   jquery-rails
