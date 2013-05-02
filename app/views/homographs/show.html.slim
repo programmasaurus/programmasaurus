@@ -1,7 +1,7 @@
 h1 Did you mean:
 
 ul.homograph-disambiguation
-  - @homograph.senses.each do |sense|
+  - @homograph.synsets.each do |synset|
     li
-      i (#{sense.synset_type.to_s[0]}.)
-      |  #{sense.gloss}
+      i (#{synset.part_of_speech.to_s[0]}.)
+      |  #{synset.gloss}

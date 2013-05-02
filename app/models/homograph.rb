@@ -9,12 +9,4 @@ class Homograph < ActiveRecord::Base
       HomographBuilder.create(lemma)
     end
   end
-
-  def senses
-    wordnet_homographs.senses
-  end
-
-  def wordnet_homographs
-    @wordnet_homographs ||= Wordnet.instance.find(lemma)
-  end
 end
