@@ -16,8 +16,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'warden-github-rails', github: 'programmasaurus/warden-github-rails'
 
 gem 'words'
-gem 'rufus-tokyo'
-gem 'ffi'
 
 group :development, :test do
   gem 'pry'
