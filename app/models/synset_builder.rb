@@ -6,10 +6,14 @@ class SynsetBuilder
       wordnet_synset = wordnet_homographs.find { |homograph| homograph.synset_id == synset_id }
     end
 
+    wordnet_homographs ||= wordnet_synset.homographs
+    homograph = HomographBuilder.create(nil, wordnet_homographs)
+
     Synset.where(
       gloss: wordnet_synset.gloss,
       part_of_speech: wordnet_synset.synset_type.to_s,
-      synset_id: wordnet_synset.synset_id
+      synset_id: wordnet_synset.synset_id,
+      homograph_id: homograph
     ).first_or_create!
   end
 end

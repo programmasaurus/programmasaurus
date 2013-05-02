@@ -18,13 +18,3 @@ class Homograph < ActiveRecord::Base
     @wordnet_homographs ||= Wordnet.instance.find(lemma)
   end
 end
-
-class HomographBuilder
-  def self.create(lemma)
-    wordnet_homographs = Wordnet.instance.find(lemma)
-
-    if wordnet_homographs.present?
-      Homograph.where(lemma: lemma).first_or_create!
-    end
-  end
-end

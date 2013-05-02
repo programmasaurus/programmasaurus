@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130502202059) do
+ActiveRecord::Schema.define(version: 20130502204145) do
 
   create_table "homographs", force: true do |t|
     t.string   "lemma"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20130502202059) do
     t.string   "synset_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "homograph_id"
   end
 
   create_table "users", force: true do |t|
