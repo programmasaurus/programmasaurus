@@ -15,6 +15,10 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'warden-github-rails', github: 'programmasaurus/warden-github-rails'
 
+gem 'words'
+gem 'rufus-tokyo'
+gem 'ffi'
+
 gem 'pry',          :groups => [:development]
 gem 'dotenv-rails', :groups => [:development, :test]
 
