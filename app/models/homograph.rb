@@ -1,12 +1,15 @@
-class Homograph < ActiveRecord::Base
-  has_many :synsets
-
+class Homograph < Struct.new(:wordnet_homographs)
   def self.lookup(lemma)
-    persisted_homograph = self.find_by_lemma(lemma)
-    if persisted_homograph.present?
-      persisted_homograph
-    else
-      HomographBuilder.create(lemma: lemma)
+    self.new(Wordnet.instance.find(lemma))
+  end
+
+  def no_data?
+    wordnet_homographs.blank?
+  end
+
+  def synsets
+    wordnet_homographs.synsets.map do |synset|
+      Synset.new(synset)
     end
   end
 end

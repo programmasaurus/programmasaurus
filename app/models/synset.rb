@@ -1,7 +1,7 @@
-class Synset < ActiveRecord::Base
-  has_many :hyponym_relations, foreign_key: :synset_id, class_name: "Hyponym"
-  has_many :hypernym_relations, foreign_key: :hyponym_id, class_name: "Hyponym"
+class Synset < Struct.new(:wordnet_synset)
+  delegate :gloss, to: :wordnet_synset
 
-  has_many :hyponyms, through: :hyponym_relations
-  has_many :hypernyms, through: :hypernym_relations
+  def part_of_speech
+    wordnet_synset.synset_type
+  end
 end
