@@ -1,5 +1,20 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+
+  before_filter :sign_in!
+
+  def sign_in!
+    github_authenticate!
+    user = User.where(github_id: github_user.id.to_s, email: github_user.email).first_or_create!
+
+    session[:user_id] = user.id
+  end
+
+  def current_user
+    User.find(session[:user_id])
+  end
+
+  def signed_in?
+    session[:user_id].present?
+  end
 end
