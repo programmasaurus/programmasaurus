@@ -3,7 +3,7 @@ Programmasaurus::Application.routes.draw do
   resource :github_authentication
 
   resources :users
-  resources :homographs, only: :show, key: :word
+  resources :homographs, only: :show
   resources :synsets, only: :show
 
   root to: 'covers#show'
