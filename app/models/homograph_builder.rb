@@ -10,7 +10,7 @@ class HomographBuilder
         homograph.save!
 
         wordnet_homographs.senses.each do |synset|
-          SynsetBuilder.create(wordnet_synset: synset)
+          SynsetBuilder.create(synset_id: synset.synset_id, homograph: homograph)
         end
       end
 
