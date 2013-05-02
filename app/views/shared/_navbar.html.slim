@@ -1,0 +1,8 @@
+.navbar.navbar-inverse.navbar-fixed-top
+  .navbar-inner
+    .container-fluid
+      ul.nav.pull-right
+        - if signed_in?
+          li= link_to "Sign Out", github_authentication_path, method: "delete", class: "btn"
+        - else
+          li= link_to "Sign In", github_authentication_path, method: "post", class: "btn"
