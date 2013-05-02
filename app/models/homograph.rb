@@ -24,7 +24,7 @@ class HomographBuilder
     wordnet_homographs = Wordnet.instance.find(lemma)
 
     if wordnet_homographs.present?
-      Homograph.create!(lemma: lemma)
+      Homograph.where(lemma: lemma).first_or_create!
     end
   end
 end
