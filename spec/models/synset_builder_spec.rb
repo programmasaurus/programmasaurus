@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SynsetBuilder do
-  describe '.create' do
+  describe ".create" do
     it "builds from a wordnet synset ID" do
       synset = SynsetBuilder.create(synset_id: "n06421016")
 
