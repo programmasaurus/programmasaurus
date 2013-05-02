@@ -36,6 +36,11 @@ GEM
     addressable (2.3.4)
     arel (4.0.0)
     atomic (1.1.8)
+    better_errors (0.8.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.1)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (2.3.1.0)
       sass (~> 3.2)
     builder (3.1.4)
@@ -48,6 +53,7 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     daemons (1.1.9)
+    debug_inspector (0.0.2)
     dotenv (0.7.0)
     dotenv-rails (0.7.0)
       dotenv (= 0.7.0)
@@ -166,6 +172,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   bootstrap-sass
   coffee-rails (~> 4.0.0)
   dotenv-rails

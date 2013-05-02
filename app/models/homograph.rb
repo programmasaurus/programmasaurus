@@ -1,13 +1,28 @@
-class Homograph
-  def self.lookup(word)
-    self.new(wordnet_homographs: Wordnet.instance.find(word))
+class Homograph < ActiveRecord::Base
+  def self.lookup(lemma)
+    persisted_homograph = self.find_by_lemma(lemma)
+    if persisted_homograph.present?
+      persisted_homograph
+    else
+      HomographBuilder.create(lemma)
+    end
   end
 
   def senses
-    @wordnet_homographs.senses
+    wordnet_homographs.senses
   end
 
-  def initialize(wordnet_homographs: nil)
-    @wordnet_homographs = wordnet_homographs
+  def wordnet_homographs
+    @wordnet_homographs ||= Wordnet.instance.find(lemma)
+  end
+end
+
+class HomographBuilder
+  def self.create(lemma)
+    wordnet_homographs = Wordnet.instance.find(lemma)
+
+    if wordnet_homographs.present?
+      Homograph.create!(lemma: lemma)
+    end
   end
 end

@@ -19,8 +19,12 @@ gem 'words'
 gem 'rufus-tokyo'
 gem 'ffi'
 
-gem 'pry',          :groups => [:development]
-gem 'dotenv-rails', :groups => [:development, :test]
+group :development, :test do
+  gem 'pry'
+  gem 'better_errors'
+  gem 'dotenv-rails'
+  gem 'binding_of_caller'
+end
 
 group :doc do
   gem 'sdoc', require: false
