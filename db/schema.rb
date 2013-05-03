@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20130503202139) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"

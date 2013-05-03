@@ -56,6 +56,6 @@ class Synset < Struct.new(:wordnet_synset)
   end
 
   def word_list
-    words.join(', ') unless no_data?
+    lemmas.join(', ') unless no_data?
   end
 end
