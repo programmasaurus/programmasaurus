@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :vocabularies
+  has_many :words
 
   acts_as_tagger
 end

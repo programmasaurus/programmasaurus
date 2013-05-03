@@ -1,5 +1,15 @@
 h1 #{@synset.abbreviation} #{@synset.words.join(", ")}
 p= @synset.gloss
+- if signed_in?
+  .row
+    .tagsinput.span6
+      - @synset.word_for(current_user).vocabularies.each do |tag|
+        span.tag
+          span #{tag.name} &nbsp; &nbsp;
+          a.tagsinput-remove-link.fui-cross-16
+      .tagsinput-add-container
+        .tagsinput-add.fui-plus-16
+        = text_field_tag :word_tag, nil, style: "width:2em"
 
 h2 Parent words
 - @synset.hypernyms.sort_by { |s| s.words.first }.each do |hypernym|

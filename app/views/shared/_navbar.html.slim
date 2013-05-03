@@ -9,11 +9,6 @@
           li
             a href="#"
               = github_user.name
-            - if current_user.vocabularies.present?  
-              ul
-                - current_user.vocabularies.each do |vocabulary|
-                  li
-                    a href="#"= vocabulary.title
           li= link_to "Sign Out", github_authentication_path, method: "delete"
         - else
           li= link_to "Sign In", new_github_authentication_path
