@@ -21,5 +21,9 @@ module Programmasaurus
     # config.i18n.default_locale = :de
 
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+    config.generators do |g|
+      g.test_framework :rspec
+    end
   end
 end
