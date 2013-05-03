@@ -16,6 +16,6 @@ class Synset < Struct.new(:wordnet_synset)
 
   def abbreviation
     first_letter = part_of_speech.to_s[0]
-    "(#{first_letter}.) "
+    "(#{first_letter}.)"
   end
 end
