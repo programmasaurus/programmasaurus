@@ -4,7 +4,7 @@ Programmasaurus::Application.routes.draw do
   resource :homograph
 
   resources :users
-  resources :word_tags, only: [:create, :destroy]
+  resources :words, only: [:create, :destroy]
   resources :synsets, only: :show
 
   resource :profile
