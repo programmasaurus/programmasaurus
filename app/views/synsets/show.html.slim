@@ -1,7 +1,7 @@
 = link_to 'javascript:history.back()' do
   '< #{@previous_word.word_list}
 .row-fluid
-  .span4.offset2
+  .span6
     ul.inline
       - @synset.lemmas.each_slice(ApplicationHelper::COLOR_CLASSES.size) do |lemmas|
         - lemmas.each_with_index do |lemma, index|
@@ -14,7 +14,7 @@
                   = current_user.words.for_lemma(@synset.id, lemma).count
     blockquote.lead= @synset.gloss
 .row-fluid
-  .span4.offset2
+  .span6
     .row-fluid
       .span6
         h2 Less specific
@@ -30,9 +30,9 @@
         - @synset.sister_words.sort_by { |s| s.lemmas.first }.each do |sister_word|
           li= synset_link(@synset, sister_word)
 
-  .span4#vocab_sidebar
+  .span4.offset1#vocab_sidebar
     .pull-right
-      h2 Vocabularies with this word
+      h2 Vocabularies with these words
       - @synset.lemmas.map { |lemma| current_user.vocabularies.for_lemma(@synset.id, lemma) }.flatten.each do |vocabulary|
         h4= vocabulary.title
         ul
