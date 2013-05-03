@@ -1,24 +1,28 @@
 = link_to 'javascript:history.back()' do
   '< #{@previous_word.word_list}
-ul.inline
-  - @synset.lemmas.each_slice(ApplicationHelper::DISAMBIGUATION_COLOR_CLASSES.size) do |lemmas|
-    - lemmas.each_with_index do |lemma, index|
-      li
-        h1 class=disambiguation_color_class(index)
-          span.pull-left= lemma
-          - if signed_in? && current_user.words.for_lemma(@synset.id, lemma).count > 0
-            span.pull-right.counter
-              = current_user.words.for_lemma(@synset.id, lemma).count
-blockquote.lead= @synset.gloss
+.row
+  .span12.text-center
+    ul.inline
+      - @synset.lemmas.each_slice(ApplicationHelper::DISAMBIGUATION_COLOR_CLASSES.size) do |lemmas|
+        - lemmas.each_with_index do |lemma, index|
+          li
+            h1 class=disambiguation_color_class(index)
+              span.pull-left= lemma
+              - if signed_in? && current_user.words.for_lemma(@synset.id, lemma).count > 0
+                span.pull-right.counter
+                  = current_user.words.for_lemma(@synset.id, lemma).count
+.row
+  .span6
+    blockquote.lead= @synset.gloss
 
-h2 Parent words
-- @synset.hypernyms.sort_by { |s| s.lemmas.first }.each do |hypernym|
-  li= link_to hypernym.lemmas.join(', '), synset_path(hypernym.id, previous_id: @synset.id)
+    h2 Parent words
+    - @synset.hypernyms.sort_by { |s| s.lemmas.first }.each do |hypernym|
+      li= link_to hypernym.lemmas.join(', '), synset_path(hypernym.id, previous_id: @synset.id)
 
-h2 Child words
-- @synset.hyponyms.sort_by { |s| s.lemmas.first }.each do |hyponym|
-  li= link_to hyponym.lemmas.join(', '), synset_path(hyponym.id)
+    h2 Child words
+    - @synset.hyponyms.sort_by { |s| s.lemmas.first }.each do |hyponym|
+      li= link_to hyponym.lemmas.join(', '), synset_path(hyponym.id)
 
-h2 Sister words
-- @synset.sister_words.sort_by { |s| s.lemmas.first }.each do |sister_word|
-  li= link_to sister_word.lemmas.join(', '), synset_path(sister_word.id)
+    h2 Sister words
+    - @synset.sister_words.sort_by { |s| s.lemmas.first }.each do |sister_word|
+      li= link_to sister_word.lemmas.join(', '), synset_path(sister_word.id)
