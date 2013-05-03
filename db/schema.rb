@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130502233244) do
+ActiveRecord::Schema.define(version: 20130503011438) do
 
   create_table "users", force: true do |t|
     t.string   "email"
@@ -19,5 +19,23 @@ ActiveRecord::Schema.define(version: 20130502233244) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "vocabularies", force: true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vocabularies", ["user_id"], name: "index_vocabularies_on_user_id", using: :btree
+
+  create_table "words", force: true do |t|
+    t.string   "synset_id"
+    t.integer  "vocabulary_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "words", ["vocabulary_id"], name: "index_words_on_vocabulary_id", using: :btree
 
 end
