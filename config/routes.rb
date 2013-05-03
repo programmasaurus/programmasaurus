@@ -5,6 +5,7 @@ Programmasaurus::Application.routes.draw do
 
   resources :users
   resources :words, only: [:create, :destroy]
+  resources :vocabularies, only: [:create, :destroy]
   resources :synsets, only: :show
 
   resource :profile
