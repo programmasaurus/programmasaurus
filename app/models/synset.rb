@@ -32,6 +32,14 @@ class Synset < Struct.new(:wordnet_synset)
     end
   end
 
+  def holonyms
+    part_holonyms + substance_holonyms
+  end
+
+  def meronyms
+    part_meronyms + substance_meronyms
+  end
+
   def sister_words
     hypernyms.map(&:hyponyms).flatten
   end
