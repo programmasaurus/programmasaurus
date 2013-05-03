@@ -6,7 +6,7 @@ p= @synset.gloss
       - @word.vocabularies_from(current_user).each do |tag|
         span.tag
           span #{tag} &nbsp; &nbsp;
-          = link_to word_tag_path(id: @word.id, word_tag: tag), class: "tagsinput-remove-link btn btn-link btn-primary", method: :delete do
+          = link_to word_tag_path(id: @word.id, word_tag: tag), class: "tagsinput-remove-link ", method: :delete do
             .fui-cross-16
       .tagsinput-add-container
         .tagsinput-add.fui-plus-16#tagAdd
