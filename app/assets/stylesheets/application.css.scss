@@ -8,45 +8,92 @@ body {
 
 .green-sea {
   color: #16A085;
+  .counter {
+    background-color: #16A085;
+  }
 }
 
 .nephritis {
   color: #27AE60;
+  .counter {
+    background-color: #27AE60;
+  }
 }
 
 .belize-hole {
   color: #2980B9;
+  .counter {
+    background-color: #2980B9;
+  }
 }
 
 .wisteria {
   color: #8E44AD;
+  .counter {
+    background-color: #8E44AD;
+  }
 }
 
 .midnight-blue {
   color: #2C3E50;
+  .counter {
+    background-color: #2C3E50;
+  }
 }
 
 .orange {
   color: #F39C12;
+  .counter {
+    background-color: #F39C12;
+  }
 }
 
 .pumpkin {
   color: #D35400;
+  .counter {
+    background-color: #D35400;
+  }
 }
 
 .pomegranate {
   color: #C0392B;
+  .counter {
+    background-color: #C0392B;
+  }
 }
 
 .silver {
   color: #BDC3C7;
+  .counter {
+    background-color: #BDC3C7;
+  }
 }
 
 .asbestos {
   color: #7F8C8D;
+  .counter {
+    background-color: #7F8C8D;
+  }
 }
 
 
 .homograph-disambiguation a {
   text-decoration: none;
 }
+
+.counter {
+  background-color: #7F8C8D;
+  border-radius: 30px;
+  color: white;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  min-width: 8px;
+  padding: 0 5px;
+  position: relative;
+  right: -7px;
+  text-align: center;
+  text-shadow: none;
+  top: 8px;
+  z-index: 10; }

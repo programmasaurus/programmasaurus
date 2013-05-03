@@ -1,7 +1,15 @@
 = link_to 'javascript:history.back()' do
   '< #{@previous_word.word_list}
-h1 #{@synset.abbreviation} #{@synset.words.join(", ")}
-p= @synset.gloss
+ul.inline
+  - @synset.lemmas.each_slice(ApplicationHelper::DISAMBIGUATION_COLOR_CLASSES.size) do |lemmas|
+    - lemmas.each_with_index do |lemma, index|
+      li
+        h1 class=disambiguation_color_class(index)
+          span.pull-left= lemma
+          - if signed_in? && current_user.words.for_lemma(@synset.id, lemma).count > 0
+            span.pull-right.counter
+              = current_user.words.for_lemma(@synset.id, lemma).count
+blockquote.lead= @synset.gloss
 - if signed_in?
   .row
     .tagsinput.span6
@@ -10,19 +18,18 @@ p= @synset.gloss
           span #{tag} &nbsp; &nbsp;
           = link_to word_tag_path(id: @word.id, word_tag: tag), class: "tagsinput-remove-link ", method: :delete do
             span.fui-cross-16
-        = form_tag word_tags_path(id: @word.id), id: "tag_form", style: "display:inline" do
-          span.tagsinput-add-container
-            span.tagsinput-add.fui-plus-16#tagAdd
-          = text_field_tag :word_tag, nil, style: "width:2em"
+      = form_tag word_tags_path(id: @word.id), id: "tag_form", style: "display:inline" do
+        span.tagsinput-add-container
+          span.tagsinput-add.fui-plus-16#tagAdd
 
 h2 Parent words
-- @synset.hypernyms.sort_by { |s| s.words.first }.each do |hypernym|
-  li= link_to hypernym.words.join(', '), synset_path(hypernym.id, previous_id: @synset.id)
+- @synset.hypernyms.sort_by { |s| s.lemmas.first }.each do |hypernym|
+  li= link_to hypernym.lemmas.join(', '), synset_path(hypernym.id, previous_id: @synset.id)
 
 h2 Child words
-- @synset.hyponyms.sort_by { |s| s.words.first }.each do |hyponym|
-  li= link_to hyponym.words.join(', '), synset_path(hyponym.id)
+- @synset.hyponyms.sort_by { |s| s.lemmas.first }.each do |hyponym|
+  li= link_to hyponym.lemmas.join(', '), synset_path(hyponym.id)
 
 h2 Sister words
-- @synset.sister_words.sort_by { |s| s.words.first }.each do |sister_word|
-  li= link_to sister_word.words.join(', '), synset_path(sister_word.id)
+- @synset.sister_words.sort_by { |s| s.lemmas.first }.each do |sister_word|
+  li= link_to sister_word.lemmas.join(', '), synset_path(sister_word.id)
