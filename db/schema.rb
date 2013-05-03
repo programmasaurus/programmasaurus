@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130503025211) do
+ActiveRecord::Schema.define(version: 20130503025942) do
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20130503025211) do
     t.integer  "vocabulary_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "words", ["vocabulary_id"], name: "index_words_on_vocabulary_id", using: :btree
