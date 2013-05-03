@@ -3,6 +3,18 @@
     .container-fluid
       ul.nav.pull-right
         - if signed_in?
+          li
+            a.dk_toggle
+              = github_user.name
+              span.select-icon
+            ul
+              - if current_user.vocabularies.present?
+                - current_user.vocabularies.each do |vocabulary|
+                  li
+                    a= vocabulary.title
+              - else
+                li
+                  span You have no vocabularies.
           li= link_to "Sign Out", github_authentication_path, method: "delete", class: "btn"
         - else
           li= link_to "Sign In", new_github_authentication_path, class: "btn"
