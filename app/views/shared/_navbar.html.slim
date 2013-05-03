@@ -5,4 +5,4 @@
         - if signed_in?
           li= link_to "Sign Out", github_authentication_path, method: "delete", class: "btn"
         - else
-          li= link_to "Sign In", github_authentication_path, method: "post", class: "btn"
+          li= link_to "Sign In", new_github_authentication_path, class: "btn"

@@ -3,12 +3,19 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   def current_user
-    @current_user ||= User.find_by_id(session[:user_id])
+    @current_user ||= User.where(github_id: github_user.id.to_s, email: github_user.email).first
   end
 
   helper_method :signed_in?
   def signed_in?
-    current_user.present?
+    github_user.present?
   end
 
+  def require_user!
+    unless signed_in?
+      session[:return_url] = request.url
+      flash[:notice] = "You must sign in to continue."
+      redirect_to new_github_authentication_path
+    end
+  end
 end

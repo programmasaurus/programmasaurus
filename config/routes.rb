@@ -6,5 +6,7 @@ Programmasaurus::Application.routes.draw do
   resources :homographs, only: :show
   resources :synsets, only: :show
 
+  resource :profile
+
   root to: 'covers#show'
 end
