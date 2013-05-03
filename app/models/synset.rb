@@ -6,8 +6,8 @@ class Synset < Struct.new(:wordnet_synset)
     Synset.new(Wordnet.instance.find_by_synset_id(synset_id))
   end
 
-  def word_for(user)
-    user.words.where(synset_id: id).first_or_create
+  def word_for(vocabulary)
+    vocabulary.words.where(synset_id: id).first_or_create
   end
 
   def id
