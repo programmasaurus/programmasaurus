@@ -1,9 +1,9 @@
 Programmasaurus::Application.routes.draw do
   resource :cover
   resource :github_authentication
+  resource :homograph
 
   resources :users
-  resources :homographs, only: :show
   resources :synsets, only: :show
 
   resource :profile

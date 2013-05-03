@@ -7,8 +7,7 @@ module ApplicationHelper
     4 => "midnight-blue",
     5 => "orange",
     6 => "pumpkin",
-    7 => "pomegranate",
-    8 => "asbestos" }
+    7 => "pomegranate" }
   
   def disambiguation_color_class(index)
     DISAMBIGUATION_COLOR_CLASSES[index]

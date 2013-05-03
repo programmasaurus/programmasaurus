@@ -1,6 +1,9 @@
 .navbar.navbar-inverse.navbar-fixed-top
   .navbar-inner
     .container-fluid
+      ul.nav
+        li
+          a href="/" Programmasaurus
       ul.nav.pull-right
         - if signed_in?
           li
@@ -15,6 +18,6 @@
               - else
                 li
                   span You have no vocabularies.
-          li= link_to "Sign Out", github_authentication_path, method: "delete", class: "btn"
+          li= link_to "Sign Out", github_authentication_path, method: "delete"
         - else
-          li= link_to "Sign In", new_github_authentication_path, class: "btn"
+          li= link_to "Sign In", new_github_authentication_path

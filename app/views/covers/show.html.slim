@@ -1,1 +1,13 @@
-h1 Programmasaurus
+.row-fluid
+  .span8.offset2
+    .text-center
+      h1.asbestos
+        em
+          ' Which 
+        | word
+        em
+          | ?
+
+      = form_tag homograph_path, method: "get", class: "form-search" do
+        p= text_field_tag :query, params[:query], class: "search-query"
+        = button_tag "Search", class: "btn btn-large btn-primary"
