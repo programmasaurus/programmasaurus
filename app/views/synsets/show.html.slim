@@ -1,13 +1,14 @@
 = link_to 'javascript:history.back()' do
   '< #{@previous_word.word_list}
 .row
-  .span12.text-center
+  .span12
     ul.inline
       - @synset.lemmas.each_slice(ApplicationHelper::DISAMBIGUATION_COLOR_CLASSES.size) do |lemmas|
         - lemmas.each_with_index do |lemma, index|
           li
             h1 class=disambiguation_color_class(index)
-              span.pull-left= lemma
+              a.pull-left class=disambiguation_color_class(index) href=lemma_path(synset_id: @synset.id, lemma: lemma)
+               = lemma
               - if signed_in? && current_user.words.for_lemma(@synset.id, lemma).count > 0
                 span.pull-right.counter
                   = current_user.words.for_lemma(@synset.id, lemma).count
@@ -28,7 +29,7 @@
       li= synset_link(@synset, sister_word)
 
   .span6#vocab_sidebar
-    - @synset.lemmas.map { |lemma| Vocabulary.for_lemma(@synset.id, lemma) }.flatten.each do |vocabulary|
+    - @synset.lemmas.map { |lemma| current_user.vocabularies.for_lemma(@synset.id, lemma) }.flatten.each do |vocabulary|
       h2= vocabulary.title
       ul
         - vocabulary.words.pluck(:lemma).sort.each do |lemma|

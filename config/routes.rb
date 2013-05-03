@@ -2,6 +2,7 @@ Programmasaurus::Application.routes.draw do
   resource :cover
   resource :github_authentication
   resource :homograph
+  resource :lemma
 
   resources :users
   resources :words, only: [:create, :destroy]

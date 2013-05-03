@@ -13,4 +13,21 @@ module ApplicationHelper
     DISAMBIGUATION_COLOR_CLASSES[index]
   end
 
+  def lemma_toggle_class(vocabulary, synset, lemma)
+    if vocabulary.words.for_lemma(synset.id, lemma).exists?
+      ""
+    else
+      "toggle-off"
+    end
+  end
+
+  def link_to_lemma_toggle(vocabulary, synset, lemma, &block)
+    word = vocabulary.words.for_lemma(synset.id, lemma).first
+    if word
+      link_to(word_path(word), method: "delete", &block)
+    else
+      link_to(words_path(vocabulary_id: vocabulary.id, synset_id: synset.id, lemma: lemma), method: "post", &block)
+    end
+  end
+
 end
