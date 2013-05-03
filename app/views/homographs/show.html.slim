@@ -13,8 +13,7 @@
           - synsets.each_with_index do |synset, index|
             h2
               i.silver
-                = synset.part_of_speech.to_s[0]
-                ' .
+                = synset.abbreviation
               = link_to synset_path(synset.id) do
                 span class=disambiguation_color_class(index)
                   = synset.gloss
