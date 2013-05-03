@@ -1,4 +1,6 @@
 .row-fluid
+  = link_to synset_path(@synset.id) do
+    < #{@synset.word_list}
   .span6.offset3
     h1= @lemma
     blockquote.lead= @synset.gloss
