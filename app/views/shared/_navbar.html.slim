@@ -7,17 +7,13 @@
       ul.nav.pull-right
         - if signed_in?
           li
-            a.dk_toggle
+            a href="#"
               = github_user.name
-              span.select-icon
-            ul
-              - if current_user.vocabularies.present?
+            - if current_user.vocabularies.present?  
+              ul
                 - current_user.vocabularies.each do |vocabulary|
                   li
-                    a= vocabulary.title
-              - else
-                li
-                  span You have no vocabularies.
+                    a href="#"= vocabulary.title
           li= link_to "Sign Out", github_authentication_path, method: "delete"
         - else
           li= link_to "Sign In", new_github_authentication_path
