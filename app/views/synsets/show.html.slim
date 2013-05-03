@@ -30,5 +30,5 @@
     - @synset.lemmas.map { |lemma| Vocabulary.for_lemma(@synset.id, lemma) }.flatten.each do |vocabulary|
       h2= vocabulary.title
       ul
-        - vocabulary.words.each do |word|
-          li= word.lemma
+        - vocabulary.words.pluck(:lemma).sort.each do |lemma|
+          li= lemma
