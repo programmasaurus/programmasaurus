@@ -1,3 +1,3 @@
 class Word < ActiveRecord::Base
-  belongs_to :vocabulary
+  acts_as_taggable_on :vocabularies
 end
