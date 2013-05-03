@@ -7,10 +7,10 @@ p= @synset.gloss
         span.tag
           span #{tag} &nbsp; &nbsp;
           = link_to word_tag_path(id: @word.id, word_tag: tag), class: "tagsinput-remove-link ", method: :delete do
-            .fui-cross-16
-      .tagsinput-add-container
-        .tagsinput-add.fui-plus-16#tagAdd
-        = form_tag word_tags_path(id: @word.id), id: "tag_form" do
+            span.fui-cross-16
+        = form_tag word_tags_path(id: @word.id), id: "tag_form", style: "display:inline" do
+          span.tagsinput-add-container
+            span.tagsinput-add.fui-plus-16#tagAdd
           = text_field_tag :word_tag, nil, style: "width:2em"
 
 h2 Parent words
