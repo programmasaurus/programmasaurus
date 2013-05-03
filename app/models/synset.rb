@@ -36,4 +36,8 @@ class Synset < Struct.new(:wordnet_synset)
 
     @hypernyms
   end
+
+  def sister_words
+    hypernyms.map(&:hyponyms).flatten
+  end
 end
