@@ -3,7 +3,11 @@ class Synset < Struct.new(:wordnet_synset)
   delegate :words, to: :wordnet_synset
 
   def self.from_id(synset_id)
-    Synset.new(Wordnet.instance.find_by_synset_id(synset_id))
+    if synset_id.present?
+      Synset.new(Wordnet.instance.find_by_synset_id(synset_id))
+    else
+      Synset.new(nil)
+    end
   end
 
   def word_for(user)
@@ -46,5 +50,13 @@ class Synset < Struct.new(:wordnet_synset)
 
   def sister_words
     hypernyms.map(&:hyponyms).flatten
+  end
+
+  def no_data?
+    wordnet_synset.blank?
+  end
+
+  def word_list
+    words.join(', ') unless no_data?
   end
 end
