@@ -18,4 +18,22 @@ class Synset < Struct.new(:wordnet_synset)
     first_letter = part_of_speech.to_s[0]
     "(#{first_letter}.)"
   end
+
+  def hyponyms
+    unless @hyponyms.present?
+      wordnet_hyponyms = wordnet_synset.hyponyms.map(&:destination)
+      @hyponyms = wordnet_hyponyms.map { |hyponym| Synset.new(hyponym) }
+    end
+
+    @hyponyms
+  end
+
+  def hypernyms
+    unless @hypernyms.present?
+      wordnet_hypernyms = wordnet_synset.hypernyms.map(&:destination)
+      @hypernyms = wordnet_hypernyms.map { |hypernym| Synset.new(hypernym) }
+    end
+
+    @hypernyms
+  end
 end
