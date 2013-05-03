@@ -1,4 +1,14 @@
-h1= @synset.words.join(", ")
+h1 #{@synset.abbreviation} #{@synset.words.join(", ")}
+p= @synset.gloss
 
-p
-  span.fui-plus-16
+h2 Parent words
+- @synset.hypernyms.sort_by { |s| s.words.first }.each do |hypernym|
+  li= link_to hypernym.words.join(', '), synset_path(hypernym.id)
+
+h2 Child words
+- @synset.hyponyms.sort_by { |s| s.words.first }.each do |hyponym|
+  li= link_to hyponym.words.join(', '), synset_path(hyponym.id)
+
+h2 Sister words
+- @synset.sister_words.sort_by { |s| s.words.first }.each do |sister_word|
+  li= link_to sister_word.words.join(', '), synset_path(sister_word.id)
