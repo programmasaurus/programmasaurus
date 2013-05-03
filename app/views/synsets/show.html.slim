@@ -3,13 +3,15 @@ p= @synset.gloss
 - if signed_in?
   .row
     .tagsinput.span6
-      - @synset.word_for(current_user).vocabularies.each do |tag|
+      - @word.vocabularies_from(current_user).each do |tag|
         span.tag
-          span #{tag.name} &nbsp; &nbsp;
-          a.tagsinput-remove-link.fui-cross-16
+          span #{tag} &nbsp; &nbsp;
+          = link_to word_tag_path(id: @word.id, word_tag: tag), class: "tagsinput-remove-link btn btn-link btn-primary", method: :delete do
+            .fui-cross-16
       .tagsinput-add-container
-        .tagsinput-add.fui-plus-16
-        = text_field_tag :word_tag, nil, style: "width:2em"
+        .tagsinput-add.fui-plus-16#tagAdd
+        = form_tag word_tags_path(id: @word.id), id: "tag_form" do
+          = text_field_tag :word_tag, nil, style: "width:2em"
 
 h2 Parent words
 - @synset.hypernyms.sort_by { |s| s.words.first }.each do |hypernym|
