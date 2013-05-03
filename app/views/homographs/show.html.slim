@@ -9,11 +9,11 @@
           | ?
 
       .homograph-disambiguation
-        - @homograph.synsets.each_slice(ApplicationHelper::DISAMBIGUATION_COLOR_CLASSES.size) do |synsets|
+        - @homograph.synsets.each_slice(ApplicationHelper::COLOR_CLASSES.size) do |synsets|
           - synsets.each_with_index do |synset, index|
             = link_to synset_path(synset.id) do
               h2
                 i.silver
                   =' synset.abbreviation
-                span class=disambiguation_color_class(index)
+                span class=color_class(index)
                   = synset.gloss

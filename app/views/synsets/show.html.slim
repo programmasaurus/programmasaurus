@@ -3,11 +3,11 @@
 .row-fluid
   .span4.offset2
     ul.inline
-      - @synset.lemmas.each_slice(ApplicationHelper::DISAMBIGUATION_COLOR_CLASSES.size) do |lemmas|
+      - @synset.lemmas.each_slice(ApplicationHelper::COLOR_CLASSES.size) do |lemmas|
         - lemmas.each_with_index do |lemma, index|
           li
-            h1 class=disambiguation_color_class(index)
-              a.pull-left class=disambiguation_color_class(index) href=lemma_path(synset_id: @synset.id, lemma: lemma)
+            h1 class=color_class(index)
+              a.pull-left class=color_class(index) href=lemma_path(synset_id: @synset.id, lemma: lemma)
                = lemma
               - if signed_in? && current_user.words.for_lemma(@synset.id, lemma).count > 0
                 span.pull-right.counter

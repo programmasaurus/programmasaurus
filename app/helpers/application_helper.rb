@@ -1,5 +1,5 @@
 module ApplicationHelper
-  DISAMBIGUATION_COLOR_CLASSES = {
+  COLOR_CLASSES = {
     0 => "green-sea",
     1 => "nephritis",
     2 => "belize-hole",
@@ -9,8 +9,8 @@ module ApplicationHelper
     6 => "pumpkin",
     7 => "pomegranate" }
   
-  def disambiguation_color_class(index)
-    DISAMBIGUATION_COLOR_CLASSES[index]
+  def color_class(index)
+    COLOR_CLASSES[index]
   end
 
   def lemma_toggle_class(vocabulary, synset, lemma)
