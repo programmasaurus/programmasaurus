@@ -17,15 +17,16 @@
 
     h2 Parent words
     - @synset.hypernyms.sort_by { |s| s.lemmas.first }.each do |hypernym|
-      li= link_to hypernym.lemmas.join(', '), synset_path(hypernym.id, previous_id: @synset.id)
+      li= synset_link(@synset, hypernym)
 
     h2 Child words
     - @synset.hyponyms.sort_by { |s| s.lemmas.first }.each do |hyponym|
-      li= link_to hyponym.lemmas.join(', '), synset_path(hyponym.id, previous_id: @synset.id)
+      li= synset_link(@synset, hyponym)
 
     h2 Sister words
     - @synset.sister_words.sort_by { |s| s.lemmas.first }.each do |sister_word|
-      li= link_to sister_word.lemmas.join(', '), synset_path(sister_word.id, previous_id: @synset.id)
+      li= synset_link(@synset, sister_word)
+
   .span6#vocab_sidebar
     - @synset.lemmas.map { |lemma| Vocabulary.for_lemma(@synset.id, lemma) }.flatten.each do |vocabulary|
       h2= vocabulary.title
