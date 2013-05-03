@@ -26,3 +26,9 @@
     h2 Sister words
     - @synset.sister_words.sort_by { |s| s.lemmas.first }.each do |sister_word|
       li= link_to sister_word.lemmas.join(', '), synset_path(sister_word.id)
+  .span6#vocab_sidebar
+    - @synset.lemmas.map { |lemma| Vocabulary.for_lemma(@synset.id, lemma) }.flatten.each do |vocabulary|
+      h2= vocabulary.title
+      ul
+        - vocabulary.words.each do |word|
+          li= word.lemma
