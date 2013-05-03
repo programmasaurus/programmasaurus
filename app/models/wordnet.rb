@@ -6,7 +6,9 @@ class Wordnet
   end
 
   def find_by_synset_id(synset_id)
-    Words::Synset.new(synset_id, @connection.wordnet_connection, nil)
+    if synset_id.present?
+      Words::Synset.new(synset_id, @connection.wordnet_connection, nil)
+    end
   end
 
   def initialize
