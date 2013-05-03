@@ -1,7 +1,7 @@
 = link_to 'javascript:history.back()' do
   '< #{@previous_word.word_list}
-.row
-  .span10.offset1
+.row-fluid
+  .span4.offset2
     ul.inline
       - @synset.lemmas.each_slice(ApplicationHelper::DISAMBIGUATION_COLOR_CLASSES.size) do |lemmas|
         - lemmas.each_with_index do |lemma, index|
@@ -12,12 +12,11 @@
               - if signed_in? && current_user.words.for_lemma(@synset.id, lemma).count > 0
                 span.pull-right.counter
                   = current_user.words.for_lemma(@synset.id, lemma).count
-.row
-  .span10.offset1
     blockquote.lead= @synset.gloss
-
-    .row
-      .span3
+.row-fluid
+  .span4.offset2
+    .row-fluid
+      .span6
         h2 Less specific
         - @synset.hypernyms.sort_by { |s| s.lemmas.first }.each do |hypernym|
           li= synset_link(@synset, hypernym)
@@ -26,14 +25,16 @@
         - @synset.hyponyms.sort_by { |s| s.lemmas.first }.each do |hyponym|
           li= synset_link(@synset, hyponym)
 
-      .span3
+      .span6
         h2 Related
         - @synset.sister_words.sort_by { |s| s.lemmas.first }.each do |sister_word|
           li= synset_link(@synset, sister_word)
 
-  .span6#vocab_sidebar
-    - @synset.lemmas.map { |lemma| current_user.vocabularies.for_lemma(@synset.id, lemma) }.flatten.each do |vocabulary|
-      h2= vocabulary.title
-      ul
-        - vocabulary.words.pluck(:lemma).sort.each do |lemma|
-          li= lemma
+  .span4#vocab_sidebar
+    .pull-right
+      h2 Vocabularies with this word
+      - @synset.lemmas.map { |lemma| current_user.vocabularies.for_lemma(@synset.id, lemma) }.flatten.each do |vocabulary|
+        h4= vocabulary.title
+        ul
+          - vocabulary.words.pluck(:lemma).sort.each do |lemma|
+            li= lemma
