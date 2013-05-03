@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/mbleigh/acts-as-taggable-on.git
+  revision: c181f18a74739da393bd612dda73de90b38152e4
+  specs:
+    acts-as-taggable-on (2.4.1.pre)
+      rails (>= 3, < 5)
+
+GIT
   remote: git://github.com/programmasaurus/warden-github-rails.git
   revision: c569ca5107754d68662cf6f64fa645c2c58878ff
   specs:
@@ -191,6 +198,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on!
   better_errors
   binding_of_caller
   bootstrap-sass

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby "2.0.0"
 
+gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 gem 'bootstrap-sass'
 gem 'certified'
 gem 'coffee-rails', '~> 4.0.0'
