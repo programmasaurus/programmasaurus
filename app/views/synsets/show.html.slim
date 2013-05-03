@@ -12,7 +12,9 @@
               - if signed_in? && current_user.words.for_lemma(@synset.id, lemma).count > 0
                 span.pull-right.counter
                   = current_user.words.for_lemma(@synset.id, lemma).count
-    blockquote.lead= @synset.gloss
+    blockquote.lead
+      i=' @synset.abbreviation
+      = @synset.gloss
 .row-fluid
   .span6
     .row-fluid
