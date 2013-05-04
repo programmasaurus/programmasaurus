@@ -64,6 +64,7 @@
     .pull-right
       .row-fluid
         h5 Vocabularies
+        hr
         - @synset.lemmas.map { |lemma| current_user.vocabularies.for_lemma(@synset.id, lemma) }.flatten.each do |vocabulary|
           h4= link_to vocabulary.title, vocabulary
           ul.unstyled
@@ -72,7 +73,10 @@
           hr
 
         .row-fluid
-            h5 Suggestions
+            h5
+              ul.inline
+                li= image_tag "wpicon.png", style: "width:2.0em; height:2.0em"
+                li Suggestions
             - if @synset.suggestions.exists?
               ol
                 - @synset.suggestions.map(&:destination).each do |destination|
