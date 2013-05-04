@@ -21,4 +21,11 @@ class VocabulariesController < ApplicationController
 
     redirect_to :back
   end
+
+  def destroy
+    @vocabulary = current_user.vocabularies.find(params[:id])
+    @vocabulary.destroy!
+    redirect_to vocabularies_path
+  end
+
 end

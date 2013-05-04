@@ -1,5 +1,7 @@
 .page_header
-  h1= @vocabulary.title
+  h1
+    = @vocabulary.title
+    .pull-right= link_to "delete", vocabulary_path(@vocabulary), method: "delete", class: "btn btn-danger"
 ul.inline
   - @vocabulary.words.order("lemma").each_slice(ApplicationHelper::COLOR_CLASSES.size) do |words|
     - words.each_with_index do |word, index|
