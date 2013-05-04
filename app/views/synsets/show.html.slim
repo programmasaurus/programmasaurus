@@ -16,41 +16,49 @@
 .row-fluid
   .span6
 
-    - if @synset.hypernyms.present?
-      h5 Less specific
-      ul.inline
-        - @synset.hypernyms.each do |hypernym|
-          - cycle("asbestos", "concrete")
-          - hypernym.lemmas.each do |lemma|
-            li.lead
-              =' link_to lemma, synset_path(hypernym.id, previous_id: @synset.id), class: current_cycle
+      - if @synset.hypernyms.present?
+        h5 Less specific
+        ol
+          - @synset.hypernyms.each do |hypernym|
+            - cycle("asbestos", "midnight-blue")
+            li class=current_cycle
+              ul.inline
+                - hypernym.lemmas.each do |lemma|
+                  li
+                    =' link_to lemma, synset_path(hypernym.id, previous_id: @synset.id), class: current_cycle
 
-    - if @synset.hyponyms.present?
-      h5 More specific
-      ul.inline
-        - @synset.hyponyms.each do |hyponym|
-          - cycle("asbestos", "concrete")
-          - hyponym.lemmas.each do |lemma|
-            li.lead
-              =' link_to lemma, synset_path(hyponym.id, previous_id: @synset.id), class: current_cycle
+      - if @synset.hyponyms.present?
+        h5 More specific
+        ol
+          - @synset.hyponyms.each do |hyponym|
+            - cycle("asbestos", "midnight-blue")
+            li class=current_cycle
+              ul.inline
+                - hyponym.lemmas.each do |lemma|
+                  li
+                    =' link_to lemma, synset_path(hyponym.id, previous_id: @synset.id), class: current_cycle
 
-    - if @synset.sister_words.present?
-      h5 Related
-      ul.inline
-        - @synset.sister_words.each do |sister_word|
-          - cycle("asbestos", "concrete")
-          - sister_word.lemmas.each do |lemma|
-            li.lead
-              =' link_to lemma, synset_path(sister_word.id, previous_id: @synset.id), class: current_cycle
+      - if @synset.sister_words.present?
+        h5 Related
+        ol
+          - @synset.sister_words.each do |sister_word|
+            - cycle("asbestos", "midnight-blue")
+            li class=current_cycle
+              ul.inline
+                - sister_word.lemmas.each do |lemma|
+                  li
+                    =' link_to lemma, synset_path(sister_word.id, previous_id: @synset.id), class: current_cycle
 
-    - if @synset.evocations.present?
-      h5 Evocations
-      ul.inline
-        - @synset.evocations.each do |evocation|
-          - cycle("asbestos", "concrete")
-          - evocation.lemmas.each do |lemma|
-            li.lead
-              =' link_to lemma, synset_path(evocation.id, previous_id: @synset.id), class: current_cycle
+      - if @synset.evocations.present?
+        h5 Evocations
+        ol
+          - @synset.evocations.each do |evocation|
+            - cycle("asbestos", "midnight-blue")
+            li class=current_cycle
+              ul.inline
+                - evocation.lemmas.each do |lemma|
+                  li
+                    =' link_to lemma, synset_path(evocation.id, previous_id: @synset.id), class: current_cycle
 
   .span4.offset1#vocab_sidebar
     .pull-right
