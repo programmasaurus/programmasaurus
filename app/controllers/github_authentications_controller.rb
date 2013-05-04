@@ -1,4 +1,6 @@
 class GithubAuthenticationsController < ApplicationController
+  skip_before_filter :require_user!
+
   def new
     github_authenticate!
     redirect_to github_authentication_path
