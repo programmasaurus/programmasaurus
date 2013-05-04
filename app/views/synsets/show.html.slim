@@ -1,5 +1,5 @@
 .row-fluid
-  .span12
+  .span6
     ul.inline
       - @synset.lemmas.each_slice(ApplicationHelper::COLOR_CLASSES.size) do |lemmas|
         - lemmas.each_with_index do |lemma, index|
@@ -13,45 +13,43 @@
                   = current_user.words.for_lemma(@synset.id, lemma).count
     = render partial: "shared/gloss"
     = render partial: "shared/synonyms"
-    = render partial: "shared/other_definitions"
 .row-fluid
   .span6
+    = render partial: "shared/other_definitions"
+    - if @synset.hypernyms.present?
+      h5 Less specific
+      ol
+        - @synset.hypernyms.each do |hypernym|
+          - cycle("asbestos", "midnight-blue")
+          li class=current_cycle
+            ul.inline
+              - hypernym.lemmas.each do |lemma|
+                li
+                  =' link_to lemma, synset_path(hypernym.id, origin_lemma: lemma), class: current_cycle
 
-      - if @synset.hypernyms.present?
-        h5 Less specific
-        ol
-          - @synset.hypernyms.each do |hypernym|
-            - cycle("asbestos", "midnight-blue")
-            li class=current_cycle
-              ul.inline
-                - hypernym.lemmas.each do |lemma|
-                  li
-                    =' link_to lemma, synset_path(hypernym.id, origin_lemma: lemma), class: current_cycle
+    - if @synset.hyponyms.present?
+      h5 More specific
+      ol
+        - @synset.hyponyms.each do |hyponym|
+          - cycle("asbestos", "midnight-blue")
+          li class=current_cycle
+            ul.inline
+              - hyponym.lemmas.each do |lemma|
+                li
+                  =' link_to lemma, synset_path(hyponym.id, origin_lemma: lemma), class: current_cycle
 
-      - if @synset.hyponyms.present?
-        h5 More specific
-        ol
-          - @synset.hyponyms.each do |hyponym|
-            - cycle("asbestos", "midnight-blue")
-            li class=current_cycle
-              ul.inline
-                - hyponym.lemmas.each do |lemma|
-                  li
-                    =' link_to lemma, synset_path(hyponym.id, origin_lemma: lemma), class: current_cycle
-
-      - if @synset.sister_words.present?
-        h5 Related
-        ol
-          - @synset.sister_words.each do |sister_word|
-            - cycle("asbestos", "midnight-blue")
-            li class=current_cycle
-              ul.inline
-                - sister_word.lemmas.each do |lemma|
-                  li
-                    =' link_to lemma, synset_path(sister_word.id, origin_lemma: lemma), class: current_cycle
+    - if @synset.sister_words.present?
+      h5 Related
+      ol
+        - @synset.sister_words.each do |sister_word|
+          - cycle("asbestos", "midnight-blue")
+          li class=current_cycle
+            ul.inline
+              - sister_word.lemmas.each do |lemma|
+                li
+                  =' link_to lemma, synset_path(sister_word.id, origin_lemma: lemma), class: current_cycle
 
   .span4.offset1#vocab_sidebar
-    .pull-right
       h5 Vocabularies
       = render "shared/vocabularies"
       hr
