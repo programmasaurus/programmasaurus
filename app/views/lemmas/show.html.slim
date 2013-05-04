@@ -4,18 +4,19 @@
   .span6.offset3
     h1= @lemma
     blockquote.lead= @synset.gloss
-    p
-      h2 Your existing vocabularies
-      table
-        - current_user.vocabularies.each do |vocabulary|
-          tr
-            td
-              = link_to_lemma_toggle(vocabulary, @synset, @lemma) do
-                span.toggle.toggle-icon class=lemma_toggle_class(vocabulary, @synset, @lemma)
-                  label.toggle-radio.fui-checkmark-16
-                  label.toggle-radio.fui-cross-16
-            td
-              .lead= vocabulary.title
+    - if current_user.vocabularies.exists?
+      p
+        h2 Your existing vocabularies
+        table
+          - current_user.vocabularies.each do |vocabulary|
+            tr
+              td
+                = link_to_lemma_toggle(vocabulary, @synset, @lemma) do
+                  span.toggle.toggle-icon class=lemma_toggle_class(vocabulary, @synset, @lemma)
+                    label.toggle-radio.fui-checkmark-16
+                    label.toggle-radio.fui-cross-16
+              td
+                .lead= vocabulary.title
     p
       h2 A new vocabulary
       = form_tag vocabularies_path, class: "form-inline" do
