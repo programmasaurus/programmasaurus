@@ -4,6 +4,7 @@ Programmasaurus::Application.routes.draw do
   resource :github_authentication
   resource :homograph
   resource :wiki_dump, only: :create
+  resource :suggestion, only: :create
 
   resources :lemmas
   resources :users

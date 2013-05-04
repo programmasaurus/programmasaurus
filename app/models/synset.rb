@@ -5,6 +5,10 @@ class Synset < Struct.new(:wordnet_synset)
     wordnet_synset.words
   end
 
+  def suggestions
+    Suggestion.where(source_synset_id: id)
+  end
+
   def self.from_id(synset_id)
     Synset.new(Wordnet.instance.find_by_synset_id(synset_id))
   end

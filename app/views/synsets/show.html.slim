@@ -59,13 +59,28 @@
                 - evocation.lemmas.each do |lemma|
                   li
                     =' link_to lemma, synset_path(evocation.id, previous_id: @synset.id), class: current_cycle
-
   .span4.offset1#vocab_sidebar
     .pull-right
-      h5 Vocabularies
-      - @synset.lemmas.map { |lemma| current_user.vocabularies.for_lemma(@synset.id, lemma) }.flatten.each do |vocabulary|
-        h4= link_to vocabulary.title, vocabulary
-        ul.unstyled
-          - (vocabulary.words.pluck(:lemma) & @synset.lemmas).sort.each do |lemma|
-            li= lemma
-        hr
+      .row-fluid
+        h5 Vocabularies
+        - @synset.lemmas.map { |lemma| current_user.vocabularies.for_lemma(@synset.id, lemma) }.flatten.each do |vocabulary|
+          h4= link_to vocabulary.title, vocabulary
+          ul.unstyled
+            - (vocabulary.words.pluck(:lemma) & @synset.lemmas).sort.each do |lemma|
+              li= lemma
+          hr
+        .row-fluid
+            h5 Suggestions
+            - if @synset.suggestions.exists?
+              ol
+                - @synset.suggestions.map(&:destination).each do |destination|
+                  - cycle("asbestos", "midnight-blue")
+                  li class=current_cycle
+                    ul.inline
+                      - destination.lemmas.each do |lemma|
+                        li
+                          =' link_to lemma, synset_path(destination.id, previous_id: @synset.id), class: current_cycle
+            - else
+              p
+                'No suggestions yet.
+                = link_to 'Request some', suggestion_path(id: @synset.id), method: :post
