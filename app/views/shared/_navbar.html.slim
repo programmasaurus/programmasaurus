@@ -4,6 +4,8 @@
       ul.nav
         li
           a href="/" Programmasaurus
+        li
+          = link_to "Vocabularies", vocabularies_path
       ul.nav.pull-right
         - if signed_in?
           li

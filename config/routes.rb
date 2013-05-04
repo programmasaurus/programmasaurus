@@ -6,7 +6,7 @@ Programmasaurus::Application.routes.draw do
   resources :lemmas
   resources :users
   resources :words, only: [:create, :destroy]
-  resources :vocabularies, only: [:create, :destroy]
+  resources :vocabularies
   resources :synsets, only: :show
 
   resource :profile
