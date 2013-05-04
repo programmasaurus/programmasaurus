@@ -1,23 +1,38 @@
 require 'open-uri'
 
+class WikiDumpWorker
+  include Sidekiq::Worker
+
+  def perform(synset_id)
+    synset = Synset.from_id(synset_id)
+    WikiDump.new(synset).create_suggestions!
+  end
+end
+
 class WikiDump < Struct.new(:synset)
   def create_suggestions!
-    synset.words.each do |word|
+    synset.lemmas.each do |word|
       dest_synsets = WordCrawl.new(word).synsets
       p dest_synsets.map(&:words)
       dest_synsets.each do |dest_synset|
         Suggestion.create!(
-          source_synset_id: synset.synset_id,
+          source_synset_id: synset.id,
           dest_synset_id:   dest_synset.synset_id
         )
       end
     end
+
+    Suggestion.where(source_synset_id: synset.id)
   end
 end
 
 class WordCrawl < Struct.new(:word)
   def doc
-    @doc ||= Nokogiri::HTML(open(source_url))
+    begin
+      @doc ||= Nokogiri::HTML(open(source_url))
+    rescue OpenURI::HTTPError
+      @doc ||= nil
+    end
   end
 
   def wikified_word
@@ -43,10 +58,13 @@ class WordCrawl < Struct.new(:word)
   end
 
   def synsets
-    @synsets ||= wiki_words.map do |word|
-      print '.'
-      homographs = Wordnet.instance.find(word)
-      homographs.senses.first if homographs
-    end.compact
+    if doc
+      @synsets ||= wiki_words.map do |word|
+        homographs = Wordnet.instance.find(word)
+        homographs.senses.first if homographs
+      end.compact
+    else
+      []
+    end
   end
 end

@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Programmasaurus::Application.routes.draw do
   resource :cover
   resource :github_authentication
@@ -13,4 +14,6 @@ Programmasaurus::Application.routes.draw do
   resource :profile
 
   root to: 'covers#show'
+
+  mount Sidekiq::Web, at: "/sidekiq"
 end
