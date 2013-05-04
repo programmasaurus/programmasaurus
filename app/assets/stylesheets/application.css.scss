@@ -106,6 +106,15 @@ body {
     text-decoration: none; }
 }
 
+.concrete {
+  color: #95A5A6;
+  .counter {
+    background-color: #95A5A6;
+  }
+  a:hover {
+    color: #7F8C8D;
+    text-decoration: none; }
+}
 
 .homograph-disambiguation a {
   text-decoration: none;

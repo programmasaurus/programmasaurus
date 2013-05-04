@@ -20,33 +20,37 @@
       h5 Less specific
       ul.inline
         - @synset.hypernyms.each do |hypernym|
-          li.lead
-            - hypernym.lemmas.each do |lemma|
-              =' link_to lemma, synset_path(hypernym.id, previous_id: @synset.id)
+          - cycle("asbestos", "concrete")
+          - hypernym.lemmas.each do |lemma|
+            li.lead
+              =' link_to lemma, synset_path(hypernym.id, previous_id: @synset.id), class: current_cycle
 
     - if @synset.hyponyms.present?
       h5 More specific
       ul.inline
         - @synset.hyponyms.each do |hyponym|
-          li.lead
-            - hyponym.lemmas.each do |lemma|
-              =' link_to lemma, synset_path(hyponym.id, previous_id: @synset.id)
+          - cycle("asbestos", "concrete")
+          - hyponym.lemmas.each do |lemma|
+            li.lead
+              =' link_to lemma, synset_path(hyponym.id, previous_id: @synset.id), class: current_cycle
 
     - if @synset.sister_words.present?
       h5 Related
       ul.inline
         - @synset.sister_words.each do |sister_word|
-          li.lead
-            - sister_word.lemmas.each do |lemma|
-              =' link_to lemma, synset_path(sister_word.id, previous_id: @synset.id)
+          - cycle("asbestos", "concrete")
+          - sister_word.lemmas.each do |lemma|
+            li.lead
+              =' link_to lemma, synset_path(sister_word.id, previous_id: @synset.id), class: current_cycle
 
     - if @synset.evocations.present?
       h5 Evocations
       ul.inline
         - @synset.evocations.each do |evocation|
-          li.lead
-            - evocation.lemmas.each do |lemma|
-              =' link_to lemma, synset_path(evocation.id, previous_id: @synset.id)
+          - cycle("asbestos", "concrete")
+          - evocation.lemmas.each do |lemma|
+            li.lead
+              =' link_to lemma, synset_path(evocation.id, previous_id: @synset.id), class: current_cycle
 
   .span4.offset1#vocab_sidebar
     .pull-right
