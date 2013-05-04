@@ -48,16 +48,6 @@
                   li
                     =' link_to lemma, synset_path(sister_word.id, origin_lemma: lemma), class: current_cycle
 
-      - if @synset.evocations.present?
-        h5 Evocations
-        ol
-          - @synset.evocations.each do |evocation|
-            - cycle("asbestos", "midnight-blue")
-            li class=current_cycle
-              ul.inline
-                - evocation.lemmas.each do |lemma|
-                  li
-                    =' link_to lemma, synset_path(evocation.id, origin_lemma: lemma), class: current_cycle
   .span4.offset1#vocab_sidebar
     .pull-right
       .row-fluid
