@@ -82,5 +82,8 @@
                           =' link_to lemma, synset_path(destination.id, previous_id: @synset.id), class: current_cycle
             - else
               p
-                'No suggestions yet.
-                = link_to 'Request some', suggestion_path(id: @synset.id), method: :post
+                - if SuggestionAttempt.exists?(synset_id: @synset.id)
+                  'Hang tight! Suggestions are being generated.
+                - else
+                  'No suggestions yet.
+                  = link_to 'Request some', suggestion_path(id: @synset.id), method: :post

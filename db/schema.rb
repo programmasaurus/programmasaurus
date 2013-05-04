@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130504051458) do
+ActiveRecord::Schema.define(version: 20130504175043) do
+
+  create_table "suggestion_attempts", force: true do |t|
+    t.string   "synset_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "suggestions", force: true do |t|
     t.string   "source_synset_id"
