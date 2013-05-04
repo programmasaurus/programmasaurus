@@ -1,0 +1,13 @@
+- if @synset.lemmas.count > 1
+  h5 Synonyms
+  ul.inline
+    - @synset.lemmas.each_slice(ApplicationHelper::COLOR_CLASSES.size) do |lemmas|
+      - lemmas.each_with_index do |lemma, index|
+        - next if lemma == params[:origin_lemma]
+        li
+          .lead class=color_class(index)
+            = link_to synset_path(@synset.id, origin_lemma: lemma), class: "pull-left #{color_class(index)}" do
+             = lemma
+            - if signed_in? && current_user.words.for_lemma(@synset.id, lemma).count > 0
+              span.pull-right.counter
+                = current_user.words.for_lemma(@synset.id, lemma).count
