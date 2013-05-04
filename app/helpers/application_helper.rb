@@ -8,7 +8,7 @@ module ApplicationHelper
     5 => "orange",
     6 => "pumpkin",
     7 => "pomegranate" }
-  
+
   def color_class(index)
     COLOR_CLASSES[index]
   end
@@ -30,4 +30,8 @@ module ApplicationHelper
     end
   end
 
+  def gravatar_url(email)
+    hash = Digest::MD5.hexdigest(email)
+    "http://www.gravatar.com/avatar/#{hash}?s=50"
+  end
 end
