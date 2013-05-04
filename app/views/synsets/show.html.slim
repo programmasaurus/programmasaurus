@@ -7,7 +7,7 @@
         - lemmas.each_with_index do |lemma, index|
           li
             h1 class=color_class(index)
-              a.pull-left class=color_class(index) href=lemma_path(synset_id: @synset.id, lemma: lemma)
+              = link_to lemma_path(@synset.id, lemma: lemma), class: "pull-left #{color_class(index)}" do
                = lemma
               - if signed_in? && current_user.words.for_lemma(@synset.id, lemma).count > 0
                 span.pull-right.counter
