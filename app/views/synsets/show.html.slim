@@ -62,9 +62,10 @@
 
   .span4.offset1#vocab_sidebar
     .pull-right
-      h5 Vocabularies with these words
+      h5 Vocabularies
       - @synset.lemmas.map { |lemma| current_user.vocabularies.for_lemma(@synset.id, lemma) }.flatten.each do |vocabulary|
-        h4= vocabulary.title
-        ul
-          - vocabulary.words.pluck(:lemma).sort.each do |lemma|
+        h4= link_to vocabulary.title, vocabulary
+        ul.unstyled
+          - (vocabulary.words.pluck(:lemma) & @synset.lemmas).sort.each do |lemma|
             li= lemma
+        hr

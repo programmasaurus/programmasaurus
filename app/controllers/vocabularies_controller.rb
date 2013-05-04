@@ -5,6 +5,10 @@ class VocabulariesController < ApplicationController
     @vocabularies = current_user.vocabularies
   end
 
+  def show
+    @vocabulary = current_user.vocabularies.find(params[:id])
+  end
+
   def create
     vocabulary_params = params[:vocabulary].permit(:title)
     vocabulary = current_user.vocabularies.build(vocabulary_params)
