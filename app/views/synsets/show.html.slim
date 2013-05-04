@@ -1,7 +1,7 @@
 = link_to 'javascript:history.back()' do
   '< #{@previous_word.word_list}
 .row-fluid
-  .span6
+  .span12
     ul.inline
       - @synset.lemmas.each_slice(ApplicationHelper::COLOR_CLASSES.size) do |lemmas|
         - lemmas.each_with_index do |lemma, index|
@@ -15,36 +15,38 @@
     = render partial: "shared/gloss"
 .row-fluid
   .span6
-    .row-fluid
-      .span6
-        h5 Less specific
+
+    - if @synset.hypernyms.present?
+      h5 Less specific
+      ul.inline
         - @synset.hypernyms.each do |hypernym|
-          .lead
+          li.lead
             - hypernym.lemmas.each do |lemma|
-              = link_to lemma, synset_path(hypernym.id, previous_id: @synset.id)
-              br
+              =' link_to lemma, synset_path(hypernym.id, previous_id: @synset.id)
 
-        h5 More specific
+    - if @synset.hyponyms.present?
+      h5 More specific
+      ul.inline
         - @synset.hyponyms.each do |hyponym|
-          .lead
+          li.lead
             - hyponym.lemmas.each do |lemma|
-              = link_to lemma, synset_path(hyponym.id, previous_id: @synset.id)
-              br
+              =' link_to lemma, synset_path(hyponym.id, previous_id: @synset.id)
 
-      .span6
-        h5 Related
+    - if @synset.sister_words.present?
+      h5 Related
+      ul.inline
         - @synset.sister_words.each do |sister_word|
-          .lead
+          li.lead
             - sister_word.lemmas.each do |lemma|
-              = link_to lemma, synset_path(sister_word.id, previous_id: @synset.id)
-              br
+              =' link_to lemma, synset_path(sister_word.id, previous_id: @synset.id)
 
-        h5 Evocations
-        - @synset.each_evocation do |evocation|
-          .lead
+    - if @synset.evocations.present?
+      h5 Evocations
+      ul.inline
+        - @synset.evocations.each do |evocation|
+          li.lead
             - evocation.lemmas.each do |lemma|
-              = link_to lemma, synset_path(evocation.id, previous_id: @synset.id)
-              br
+              =' link_to lemma, synset_path(evocation.id, previous_id: @synset.id)
 
   .span4.offset1#vocab_sidebar
     .pull-right

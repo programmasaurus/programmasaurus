@@ -51,11 +51,11 @@ class Synset < Struct.new(:wordnet_synset)
     hypernyms.map(&:hyponyms).flatten
   end
 
-  def each_evocation(&block)
+  def evocations
     if wordnet_synset.evocations.present?
-      wordnet_synset.evocations.destinations.each do |destination|
-        yield Synset.new(destination)
-      end
+      wordnet_synset.evocations.destinations.map { |destination| Synset.new(destination) }
+    else
+      []
     end
   end
 
