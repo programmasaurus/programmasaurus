@@ -13,6 +13,10 @@
                   = current_user.words.for_lemma(@synset.id, lemma).count
     = render partial: "shared/gloss"
     = render partial: "shared/synonyms"
+  .span4.offset1#vocab_sidebar
+      h5 Vocabularies
+      = render "shared/vocabularies"
+      hr
 .row-fluid
   .span6
     = render partial: "shared/other_definitions"
@@ -48,28 +52,24 @@
               - sister_word.lemmas.each do |lemma|
                 li
                   =' link_to lemma, synset_path(sister_word.id, origin_lemma: lemma), class: current_cycle
-
-  .span4.offset1#vocab_sidebar
-      h5 Vocabularies
-      = render "shared/vocabularies"
-      hr
-      h5
-        ul.inline
-          li= image_tag "wpicon.png", style: "width:2.0em; height:2.0em"
-          li Suggestions
-      - if @synset.suggestions.exists?
-        ol
-          - @synset.suggestions.map(&:destination).each do |destination|
-            - cycle("asbestos", "midnight-blue")
-            li class=current_cycle
-              ul.inline
-                - destination.lemmas.each do |lemma|
-                  li
-                    =' link_to lemma, synset_path(destination.id, origin_lemma: lemma), class: current_cycle
-      - else
-        p
-          - if SuggestionAttempt.exists?(synset_id: @synset.id)
-            'Hang tight! Suggestions are being generated.
-          - else
-            'No suggestions yet.
-            = link_to 'Request some', suggestion_path(id: @synset.id), method: :post
+  .span4.offset1
+    h5
+      ul.inline
+        li= image_tag "wpicon.png", style: "width:2.0em; height:2.0em"
+        li Suggestions
+    - if @synset.suggestions.exists?
+      ol
+        - @synset.suggestions.map(&:destination).each do |destination|
+          - cycle("asbestos", "midnight-blue")
+          li class=current_cycle
+            ul.inline
+              - destination.lemmas.each do |lemma|
+                li
+                  =' link_to lemma, synset_path(destination.id, origin_lemma: lemma), class: current_cycle
+    - else
+      p
+        - if SuggestionAttempt.exists?(synset_id: @synset.id)
+          'Hang tight! Suggestions are being generated.
+        - else
+          'No suggestions yet.
+          = link_to 'Request some', suggestion_path(id: @synset.id), method: :post
