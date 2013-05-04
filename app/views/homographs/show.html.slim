@@ -11,7 +11,7 @@
     ol.homograph-disambiguation
       - @homograph.synsets.each_slice(ApplicationHelper::COLOR_CLASSES.size) do |synsets|
         - synsets.each_with_index do |synset, index|
-          = link_to synset_path(synset.id) do
+          = link_to synset_path(synset.id, origin_lemma: params[:query]) do
             li.lead class=color_class(index)
               i.silver
                 =' synset.abbreviation

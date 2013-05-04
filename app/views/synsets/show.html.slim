@@ -13,6 +13,7 @@
                 span.pull-right.counter
                   = current_user.words.for_lemma(@synset.id, lemma).count
     = render partial: "shared/gloss"
+    = render partial: "shared/other_definitions"
 .row-fluid
   .span6
 
@@ -69,6 +70,7 @@
             - (vocabulary.words.pluck(:lemma) & @synset.lemmas).sort.each do |lemma|
               li= lemma
           hr
+
         .row-fluid
             h5 Suggestions
             - if @synset.suggestions.exists?

@@ -1,0 +1,8 @@
+- if @homograph && @homograph.synsets.count > 1
+  h5 Other definitions
+  ol
+    - @homograph.synsets.each do |synset|
+      - next if synset.id == @synset.id
+      li.concrete
+        i=' synset.abbreviation
+        = link_to synset.gloss, synset_path(synset.id, origin_lemma: @homograph.lemma), class: "concrete"

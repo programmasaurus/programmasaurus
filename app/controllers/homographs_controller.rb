@@ -9,7 +9,7 @@ class HomographsController < ApplicationController
       flash[:error] = "Sorry... We're drawing a blank on #{params[:query]}. Perhaps you can search with a similar word?"
       redirect_to :back
     elsif @homograph.synsets.count == 1
-      redirect_to synset_path(@homograph.synsets.first.id)
+      redirect_to synset_path(@homograph.synsets.first.id, origin_lemma: params[:query])
     end
   end
 end

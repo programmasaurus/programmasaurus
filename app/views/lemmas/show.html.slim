@@ -1,5 +1,5 @@
 .row-fluid
-  = link_to synset_path(@synset.id) do
+  = link_to synset_path(@synset.id, origin_lemma: @lemma) do
     < #{@synset.word_list}
   .span6.offset3
     h1= @lemma
