@@ -3,7 +3,6 @@ class SynsetsController < ApplicationController
 
   def show
     @synset = Synset.from_id(params[:id])
-    @previous_word = Synset.from_id(params[:previous_id])
     @homograph = Homograph.lookup(params[:origin_lemma]) if params[:origin_lemma].present?
   end
 end

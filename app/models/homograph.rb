@@ -10,6 +10,7 @@ class Homograph < Struct.new(:wordnet_homographs)
   end
 
   def synsets
+    return [] if no_data?
     wordnet_homographs.synsets.map do |synset|
       Synset.new(synset)
     end
