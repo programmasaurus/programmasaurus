@@ -12,3 +12,6 @@
           li= link_to "Sign Out", github_authentication_path, method: "delete"
         - else
           li= link_to "Sign In", new_github_authentication_path
+        = form_tag homograph_path, method: "get", class: "navbar-form pull-right" do
+          =' text_field_tag :query, nil, placeholder: "Which word?"
+          = button_tag "Search", class: "btn btn-primary"
