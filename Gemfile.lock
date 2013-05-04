@@ -103,6 +103,7 @@ GEM
     multi_json (1.7.2)
     multipart-post (1.2.0)
     netrc (0.7.7)
+    nokogiri (1.5.9)
     octokit (1.24.0)
       addressable (~> 2.2)
       faraday (~> 0.8)
@@ -214,6 +215,7 @@ DEPENDENCIES
   flat-ui-rails!
   jbuilder (~> 1.0.1)
   jquery-rails
+  nokogiri
   pg
   pry
   rails (= 4.0.0.rc1)
