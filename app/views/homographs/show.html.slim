@@ -8,12 +8,12 @@
         em
           | ?
 
-      .homograph-disambiguation
-        - @homograph.synsets.each_slice(ApplicationHelper::COLOR_CLASSES.size) do |synsets|
-          - synsets.each_with_index do |synset, index|
-            = link_to synset_path(synset.id) do
-              h2
-                i.silver
-                  =' synset.abbreviation
-                span class=color_class(index)
-                  = synset.gloss
+    ol.homograph-disambiguation
+      - @homograph.synsets.each_slice(ApplicationHelper::COLOR_CLASSES.size) do |synsets|
+        - synsets.each_with_index do |synset, index|
+          = link_to synset_path(synset.id) do
+            li.lead class=color_class(index)
+              i.silver
+                =' synset.abbreviation
+              span class=color_class(index)
+                = synset.gloss
