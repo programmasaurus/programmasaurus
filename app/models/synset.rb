@@ -51,6 +51,14 @@ class Synset < Struct.new(:wordnet_synset)
     hypernyms.map(&:hyponyms).flatten
   end
 
+  def each_evocation(&block)
+    if wordnet_synset.evocations.present?
+      wordnet_synset.evocations.destinations.each do |destination|
+        yield Synset.new(destination)
+      end
+    end
+  end
+
   def no_data?
     wordnet_synset.blank?
   end

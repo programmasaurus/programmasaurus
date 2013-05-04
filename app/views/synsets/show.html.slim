@@ -17,22 +17,38 @@
   .span6
     .row-fluid
       .span6
-        h2 Less specific
-        - @synset.hypernyms.sort_by { |s| s.lemmas.first }.each do |hypernym|
-          li= synset_link(@synset, hypernym)
+        h5 Less specific
+        - @synset.hypernyms.each do |hypernym|
+          .lead
+            - hypernym.lemmas.each do |lemma|
+              = link_to lemma, synset_path(hypernym.id, previous_id: @synset.id)
+              br
 
-        h2 More specific
-        - @synset.hyponyms.sort_by { |s| s.lemmas.first }.each do |hyponym|
-          li= synset_link(@synset, hyponym)
+        h5 More specific
+        - @synset.hyponyms.each do |hyponym|
+          .lead
+            - hyponym.lemmas.each do |lemma|
+              = link_to lemma, synset_path(hyponym.id, previous_id: @synset.id)
+              br
 
       .span6
-        h2 Related
-        - @synset.sister_words.sort_by { |s| s.lemmas.first }.each do |sister_word|
-          li= synset_link(@synset, sister_word)
+        h5 Related
+        - @synset.sister_words.each do |sister_word|
+          .lead
+            - sister_word.lemmas.each do |lemma|
+              = link_to lemma, synset_path(sister_word.id, previous_id: @synset.id)
+              br
+
+        h5 Evocations
+        - @synset.each_evocation do |evocation|
+          .lead
+            - evocation.lemmas.each do |lemma|
+              = link_to lemma, synset_path(evocation.id, previous_id: @synset.id)
+              br
 
   .span4.offset1#vocab_sidebar
     .pull-right
-      h2 Vocabularies with these words
+      h5 Vocabularies with these words
       - @synset.lemmas.map { |lemma| current_user.vocabularies.for_lemma(@synset.id, lemma) }.flatten.each do |vocabulary|
         h4= vocabulary.title
         ul
