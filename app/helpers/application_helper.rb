@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   def gravatar_url(email)
-    hash = Digest::MD5.hexdigest(email)
+    hash = Digest::MD5.hexdigest(email || "")
     "http://www.gravatar.com/avatar/#{hash}?s=50"
   end
 end
