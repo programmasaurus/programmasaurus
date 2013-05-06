@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   def current_user
-    @current_user ||= User.where(github_id: github_user.id.to_s, email: github_user.email).first
+    @current_user ||= User.where(github_id: github_user.id.to_s, email: github_user.email).first_or_create
   end
 
   helper_method :signed_in?
