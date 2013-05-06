@@ -1,20 +1,21 @@
-- if current_user.vocabularies.exists?
-  table
-    - current_user.vocabularies.each_slice(ApplicationHelper::COLOR_CLASSES.size) do |vocabularies|
-      - vocabularies.each_with_index do |vocabulary, index|
-        tr
-          td
-            = link_to_lemma_toggle(vocabulary, @synset, params[:origin_lemma]) do
-              span.toggle.toggle-icon class=lemma_toggle_class(vocabulary, @synset, params[:origin_lemma])
-                label.toggle-radio.fui-checkmark-16
-                label.toggle-radio.fui-cross-16
-          td
-            .lead= link_to vocabulary.title, vocabulary
-p
-  = form_tag vocabularies_path, class: "form-inline" do
-    = fields_for @word do |word_fields|
-      = word_fields.hidden_field :synset_id
-      = word_fields.hidden_field :lemma
-    = fields_for Vocabulary.new do |vocabulary_fields|
-      =' vocabulary_fields.text_field :title, placeholder: "Title"
-    = button_tag "Add", class: "btn"
+- if signed_in?
+  - if current_user.vocabularies.exists?
+    table
+      - current_user.vocabularies.each_slice(ApplicationHelper::COLOR_CLASSES.size) do |vocabularies|
+        - vocabularies.each_with_index do |vocabulary, index|
+          tr
+            td
+              = link_to_lemma_toggle(vocabulary, @synset, params[:origin_lemma]) do
+                span.toggle.toggle-icon class=lemma_toggle_class(vocabulary, @synset, params[:origin_lemma])
+                  label.toggle-radio.fui-checkmark-16
+                  label.toggle-radio.fui-cross-16
+            td
+              .lead= link_to vocabulary.title, vocabulary
+  p
+    = form_tag vocabularies_path, class: "form-inline" do
+      = fields_for @word do |word_fields|
+        = word_fields.hidden_field :synset_id
+        = word_fields.hidden_field :lemma
+      = fields_for Vocabulary.new do |vocabulary_fields|
+        =' vocabulary_fields.text_field :title, placeholder: "Title"
+      = button_tag "Add", class: "btn"
