@@ -9,7 +9,7 @@
       ul.nav.pull-right
         - if signed_in?
           li
-            img.img-circle src=gravatar_url(current_user.email)
+            img.img-circle src=gravatar_url(github_user.gravatar_id)
           li
             a href="#"
               = github_user.name
