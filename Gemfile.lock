@@ -120,6 +120,7 @@ GEM
     multi_json (1.7.2)
     multipart-post (1.2.0)
     netrc (0.7.7)
+    newrelic_rpm (3.6.2.96)
     nokogiri (1.5.9)
     octokit (1.24.0)
       addressable (~> 2.2)
@@ -242,6 +243,7 @@ DEPENDENCIES
   flat-ui-rails!
   jbuilder (~> 1.0.1)
   jquery-rails
+  newrelic_rpm
   nokogiri
   pg
   pry
