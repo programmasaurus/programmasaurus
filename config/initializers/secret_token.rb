@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Programmasaurus::Application.config.secret_key_base = 'ac5a9ad3e62ab3c45d46367a732b15f6ef5c6741517c9192454d9640e3a9b476d9e5666d2bcd5d2830b0dc29d780bf13539f2a9281c20e76cb1b0a7a14c14da3'
+Programmasaurus::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']
